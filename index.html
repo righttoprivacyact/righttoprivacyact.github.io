@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Federal Right To Privacy Act</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg2: #172554;
+      --surface: rgba(255,255,255,0.95);
+      --surface-soft: rgba(248,250,252,0.92);
+      --surface-line: rgba(15,23,42,0.08);
+      --text: #0f172a;
+      --muted: #475569;
+      --muted-2: #64748b;
+      --hero-text: #eff6ff;
+      --hero-muted: #cbd5e1;
+      --accent: #1d4ed8;
+      --accent-2: #0f766e;
+      --accent-soft: #dbeafe;
+      --danger: #b91c1c;
+      --gold: #f59e0b;
+      --shadow: 0 24px 60px rgba(2, 6, 23, 0.22);
+      --radius: 22px;
+      --content-width: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--hero-text);
+      background:
+        radial-gradient(1200px 700px at 0% 0%, rgba(59,130,246,0.22), transparent 58%),
+        radial-gradient(900px 520px at 100% 10%, rgba(20,184,166,0.16), transparent 56%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      overflow-x: hidden;
+    }
+
+    a { color: #bfdbfe; }
+
+    .quote-fade {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .quote-fade span {
+      position: absolute;
+      color: rgba(255,255,255,0.04);
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 700;
+      line-height: 1.1;
+      max-width: 38rem;
+      letter-spacing: -0.02em;
+    }
+    .q1 { top: 8%; left: 4%; font-size: clamp(1.35rem, 2.4vw, 2.35rem); }
+    .q2 { top: 37%; right: 3%; text-align: right; font-size: clamp(1.1rem, 2vw, 1.85rem); max-width: 30rem; }
+    .q3 { bottom: 18%; left: 6%; font-size: clamp(1rem, 1.8vw, 1.5rem); max-width: 29rem; }
+    .q4 { bottom: 5%; right: 7%; text-align: right; font-size: clamp(1rem, 1.8vw, 1.4rem); max-width: 27rem; }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      width: min(calc(100% - 32px), var(--content-width));
+      margin: 0 auto;
+      padding: 28px 0 40px;
+    }
+
+    header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 8px 0 30px;
+    }
+
+    .brand small {
+      display: inline-block;
+      color: var(--hero-muted);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      margin-bottom: 12px;
+    }
+    .brand h1 {
+      margin: 0 0 8px;
+      font-size: clamp(2.55rem, 6vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+    }
+    .brand h2 {
+      margin: 0;
+      color: var(--hero-muted);
+      font-weight: 500;
+      font-size: clamp(1.1rem, 2.4vw, 1.55rem);
+    }
+
+    .github {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+      white-space: nowrap;
+      color: #e2e8f0;
+      font-weight: 700;
+      font-size: 0.96rem;
+      padding: 13px 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      box-shadow: 0 14px 28px rgba(2,6,23,0.14);
+      transition: transform .18s ease, background .18s ease;
+    }
+    .github:hover { transform: translateY(-1px); background: rgba(255,255,255,0.12); }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.28fr) minmax(320px, 0.9fr);
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 26px;
+    }
+
+    .panel {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--surface-line);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+    }
+
+    .panel h3 {
+      margin: 0 0 14px;
+      font-size: 1.32rem;
+      letter-spacing: -0.02em;
+      color: #0b1220;
+    }
+
+    .kicker {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #1e3a8a;
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
+    }
+
+    .lede,
+    .problem,
+    .solution,
+    .actions p,
+    .quote-box p,
+    footer p {
+      color: var(--muted);
+      line-height: 1.78;
+      font-size: 1.02rem;
+    }
+    .lede {
+      color: #1e293b;
+      font-size: clamp(1.08rem, 1.45vw, 1.22rem);
+    }
+    .problem strong,
+    .solution strong,
+    .lede strong { color: #0f172a; }
+
+    .solution ul,
+    .actions ol {
+      margin: 14px 0 0;
+      padding-left: 20px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    .solution li,
+    .actions li { margin-bottom: 8px; }
+
+    .callout {
+      margin: 20px 0;
+      padding: 16px 18px;
+      border-radius: 16px;
+      border: 1px solid #fecaca;
+      background: #fff7ed;
+      color: #7f1d1d;
+      font-weight: 700;
+      line-height: 1.7;
+    }
+
+    .quote-box {
+      background: linear-gradient(180deg, var(--surface), var(--surface-soft));
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      min-height: 100%;
+    }
+    .quote-frame {
+      min-height: 270px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
+      padding-top: 6px;
+    }
+    blockquote {
+      margin: 0;
+      color: #0f172a;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.18rem;
+      line-height: 1.72;
+      min-height: 210px;
+    }
+    blockquote footer {
+      margin-top: 14px;
+      color: var(--muted-2);
+      font-size: 0.96rem;
+      font-weight: 700;
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    }
+
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 28px;
+      align-items: start;
+    }
+
+    .count {
+      margin: 12px 0 16px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: linear-gradient(90deg, #fef3c7, #ffedd5);
+      border: 1px solid #fde68a;
+      color: #78350f;
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    form { display: grid; gap: 14px; }
+    label {
+      display: block;
+      margin-bottom: 7px;
+      color: #0f172a;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    input {
+      width: 100%;
+      padding: 14px 15px;
+      border-radius: 14px;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #0f172a;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color .18s ease, box-shadow .18s ease;
+    }
+    input::placeholder { color: #94a3b8; }
+    input:focus {
+      border-color: #60a5fa;
+      box-shadow: 0 0 0 4px rgba(96,165,250,0.16);
+    }
+
+    button {
+      appearance: none;
+      border: 0;
+      border-radius: 14px;
+      cursor: pointer;
+      padding: 14px 16px;
+      font-size: 1rem;
+      font-weight: 800;
+      color: white;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 14px 30px rgba(29,78,216,0.22);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    button:hover { transform: translateY(-1px); box-shadow: 0 16px 34px rgba(29,78,216,0.25); }
+
+    .muted {
+      color: var(--muted-2);
+      font-size: 0.93rem;
+      line-height: 1.65;
+    }
+
+    .status { min-height: 1.25rem; font-weight: 700; }
+    .status.ok { color: #166534; }
+    .status.err { color: #b91c1c; }
+
+    footer {
+      padding: 8px 2px 16px;
+      color: var(--hero-muted);
+    }
+    footer p {
+      color: #dbeafe;
+      font-size: 0.98rem;
+      line-height: 1.75;
+    }
+
+    @media (max-width: 980px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .hero,
+      .grid2 {
+        grid-template-columns: 1fr;
+      }
+      .quote-frame,
+      blockquote { min-height: unset; }
+    }
+
+    @media (max-width: 720px) {
+      .quote-fade { display: none; }
+      .wrap {
+        width: min(calc(100% - 20px), var(--content-width));
+        padding-top: 20px;
+      }
+      .panel { padding: 22px 18px; border-radius: 18px; }
+      .brand h1 { font-size: clamp(2.3rem, 11vw, 3.5rem); }
+      .brand h2 { font-size: 1rem; }
+      .github { width: 100%; }
+      .actions ol,
+      .solution ul { padding-left: 18px; }
+      .count { font-size: 0.98rem; }
+      input, button { font-size: 16px; }
+      footer p br { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="quote-fade" aria-hidden="true">
+    <span class="q1">“Recent inventions and business methods call attention to the next step which must be taken for the protection of the person...”</span>
+    <span class="q2">“It would be foolish to contend that the degree of privacy secured to citizens by the Fourth Amendment has been entirely unaffected by the advance of technology.”</span>
+    <span class="q3">“Today, some of the greatest threats to individual privacy may come from powerful private companies...”</span>
+    <span class="q4">“When republican virtue fails, slavery ensues.”</span>
+  </div>
+
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <small>Draft legislation for <a href="https://www.cs.cornell.edu/~shmat/courses/cs5436/warren-brandeis.pdf">tranquility of the mind</a></small>
+        <h1>Federal Right To Privacy Act</h1>
+        <h2>Or, the Right to be Let Alone</h2>
+      </div>
+      <a class="github" href="https://github.com/your-org/right-to-privacy-act" target="_blank" rel="noreferrer">View the project on GitHub</a>
+    </header>
+
+    <section class="hero">
+      <div class="panel">
+        <h2>The Problem: Deterioration of Privacy</h2>
+        <p class="lede">
+          Most people do <strong>not</strong> know how much of their lives is being quietly collected, cross-linked, sold, scored, and stored. Your car can become a mobile telemetry device. Your child's school has a wealth of data spread through untrustworthy vendors including health records, birth certificates, videos, photos. Companies can scrape your movements, habits, devices, family, purchases, and routines until they can predict where you go, who you know, what you fear, and what you might do next. It's gone from merely name and city being publicly available to a shadow profile of a plethora of your data, to an extent one cannot comprehend.
+        </p>
+        <p class="lede">
+          And it is getting worse. Society's expectation was that a photo could be taken of you, your car, your family out in public, but the likelihood until recently approached zero. License plate reader systems can turn normal travel into a searchable movement history. Surveillance companies are scraping and cataloging faces, and where and when those photos were taken. Private actors are building a dataset including yard signs, bumper stickers, and other devices meant for neighborhood expression, not databases. Governments can buy data from brokers that they would otherwise need a warrant to obtain. Together, these systems create an ever-growing dossier of private life that can be exploited by corporations, data brokers, contractors, and the state.
+        </p>
+        <p class="lede">
+        This is all un-American. America is a nation of free people, not watched people. Warren and Brandeis perceived that the gravest injuries are not always physical. The law rightly condemns the invasion of the body -- battery. It should no less condemn the invasion of the private life, the disturbance of the mind, the humiliation of exposure, and the slow theft of the right to be let alone.
+        </p>
+        <div class="lede">
+          <h2>The Solution: A Comprehensive Privacy Bill</h2>
+          <p class="lede">
+          The bill imposes hard limits on surveillance, hidden collection, coercive “consent,” brokered data trafficking, and government circumvention of what should be a lawful process balancing freedom with evidence of wrongdoing. It restores rule-based protections people can understand and courts can enforce.
+        </p>
+          <ul>
+            <li>Ban broad commercial surveillance and sharply restrict data brokerage.</li>
+            <li>Control over your data, protections for children’s, medical, biometric, genetic, location data.</li>
+            <li>Protect victims of abuse, domestic violence to remove their likeness.</li>
+            <li>Opt-in for everything. Choice for 'this call may be recorded.'
+            <li>Limitation of government drones.</li>
+            <li>Stop forced ID uploads when safer alternatives exist.</li>
+            <li>Update CAN-SPAM for one-click deletion of email addresses from databases.</li>
+            <li>Physical and digital switches for automobile cellular connections.</li>
+            <li>Limit government purchase of private-sector data.</li>
+            <li>Block private searchable databases of plates, yard signs, and expression designed for community.</li>
+            <li>Require local-first surveillance architecture instead of cloud-hosted mass tracking.</li>
+            <li>Framework for state DMV to include with ID two-factor authentication and digital ID information.</li>
+            <li>Require Social Security Numbers to authenticate preventing fraud.</li>
+            <li>US Mail Spam Control.</li>
+            <li>Develop framework for TOTP-inspired digital license plate.</li>
+            <li>Security standard for surveillance cameras with notice from businesses the standard is in use.</li>
+            <li>Serious civil enforcement and criminal penalties.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="panel quote-box">
+        <div class="quote-frame">
+          <blockquote id="rotating-quote">
+            “Recent inventions and business methods call attention to the next step which must be taken for the protection of the person, and for securing to the individual what Judge Cooley calls the ‘right to be let alone.’”
+            <footer>— Warren and Brandeis</footer>
+          </blockquote>
+        </div>
+        <p class="muted">
+          This project is a work in progress. People are encouraged to review the draft, suggest edits, and write tests that are run through LLMs to check whether the bill behaves as intended in real-world scenarios.
+        </p>
+      </div>
+    </section>
+
+    <section class="grid2">
+      <div class="panel actions">
+        <h3>Help build support</h3>
+        <ol>
+          <li><strong>Contact 2 people</strong> and ask them to contact 2 more. Tell them why privacy is a human right and why this bill matters.</li>
+          <li><strong>Call your representatives and senators</strong> and ask them to sponsor or support the Federal Right To Privacy Act.</li>
+          <li><strong>Sign here</strong> so Congress sees there is a real constituency for privacy law with teeth.</li>
+        </ol>
+        <p>
+          A free people should not have to reverse-engineer hidden surveillance systems just to understand why ads, police databases, insurance scores, schools, and platforms know so much about them.
+        </p>
+      </div>
+
+      <div class="panel cta">
+        <div class="count" id="count-box">Join 338 people, sign and let Congress know privacy is a human right.</div>
+        <form id="signup-form">
+          <div>
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required maxlength="120" placeholder="Your name" />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required maxlength="200" placeholder="you@example.com" />
+          </div>
+          <div>
+            <label for="zip">Zip</label>
+            <input id="zip" name="zip" type="text" required maxlength="20" placeholder="Zip code" />
+          </div>
+          <button type="submit">Support The Right To Privacy Act</button>
+          <div id="status" class="status" aria-live="polite"></div>
+          <p class="muted">By submitting, your name, email, and zip are stored for following up with congress.</p>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+       The Right To Privacy Act
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    const quotes = [
+      {
+        text: '“Recent inventions and business methods call attention to the next step which must be taken for the protection of the person, and for securing to the individual what Judge Cooley calls the \'right to be let alone.\'”',
+        by: '— Warren and Brandeis'
+      },
+      {
+        text: '“It would be foolish to contend that the degree of privacy secured to citizens by the Fourth Amendment has been entirely unaffected by the advance of technology.”',
+        by: '— Scalia, Kyllo v. U.S.'
+      },
+      {
+        text: '“Today, some of the greatest threats to individual privacy may come from powerful private companies that collect and sometimes misuse vast quantities of data about the lives of ordinary Americans.”',
+        by: '— Alito, joined by Thomas, Carpenter v. U.S.'
+      },
+      {
+        text: '“When republican virtue fails, slavery ensues”',
+        by: '— Paine'
+      },
+      {
+        text: '“in this job, it’s garbage in, garbage out. If it’s a foolish law, you are bound by oath to produce a foolish result, because it’s not your job to decide what is foolish and what isn’t. It’s the job of the people across the street.”',
+        by: '— Scalia'
+      }
+    ];
+
+    let qi = 0;
+    const quoteBox = document.getElementById('rotating-quote');
+    setInterval(() => {
+      qi = (qi + 1) % quotes.length;
+      quoteBox.innerHTML = `${quotes[qi].text}<footer>${quotes[qi].by}</footer>`;
+    }, 11000);
+
+    async function refreshCount() {
+      try {
+        const res = await fetch('/count');
+        const data = await res.json();
+        const n = Number.isFinite(data.count) ? data.count : 338;
+        document.getElementById('count-box').textContent = `Join ${n} people, sign and let Congress know privacy is a human right.`;
+      } catch (_) {}
+    }
+
+    document.getElementById('signup-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const status = document.getElementById('status');
+      status.className = 'status';
+      status.textContent = 'Submitting...';
+      const fd = new FormData(e.target);
+      try {
+        const res = await fetch('/signup', { method: 'POST', body: fd });
+        const data = await res.json();
+        if (!res.ok || !data.ok) throw new Error(data.error || 'Request failed');
+        status.className = 'status ok';
+        status.textContent = 'Thank you — your name has been added.';
+        e.target.reset();
+        refreshCount();
+      } catch (err) {
+        status.className = 'status err';
+        status.textContent = err.message || 'Something went wrong.';
+      }
+    });
+
+    refreshCount();
+  </script>
+</body>
+</html>
