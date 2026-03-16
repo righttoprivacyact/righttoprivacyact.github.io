@@ -485,7 +485,7 @@
 
     async function refreshCount() {
       try {
-        const res = await fetch('/count');
+        const res = await fetch('https://qrepe.com/rtpa/count');
         const data = await res.json();
         const n = Number.isFinite(data.count) ? data.count : 338;
         document.getElementById('count-box').textContent = `Join ${n} people, sign and let Congress know privacy is a human right.`;
@@ -499,7 +499,7 @@
       status.textContent = 'Submitting...';
       const fd = new FormData(e.target);
       try {
-        const res = await fetch('/signup', { method: 'POST', body: fd });
+        const res = await fetch('https://qrepe.com/rtpa/signup', { method: 'POST', body: fd });
         const data = await res.json();
         if (!res.ok || !data.ok) throw new Error(data.error || 'Request failed');
         status.className = 'status ok';
